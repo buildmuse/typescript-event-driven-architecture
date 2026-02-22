@@ -16,6 +16,9 @@
  * - emit("order:created", wrongPayload) should be a type error
  */
 
+import { EventEmitter } from "events";
+
+
 // ── These types are given ──
 interface AppEvents {
   "user:login": { userId: string; timestamp: number };
@@ -41,9 +44,9 @@ class TypedOrderEventEmitter<TEvents extends Record<string, any>> {
   on<K extends keyof TEvents>(
     event : K,
     listener : (payload: TEvents[K]) => void 
-  ) : this {
+  ) : () => void {
     this.emitter.on(event as string, listener);
-    return this;
+    return () => this.emitter.off(event as string, listener);
   }
 
   emit<K extends keyof TEvents>(
@@ -54,12 +57,23 @@ class TypedOrderEventEmitter<TEvents extends Record<string, any>> {
     return this;
   }
 
+  off<K extends keyof TEvents>(
+    event: K,
+    listener: (payload: TEvents[K]) => void
+  ):this{
+    this.emitter.off(event as string, listener)
+    return this;
+  }
 
+  listenerCount<T extends keyof TEvents>(
+    event: T
+  ) : number {
+    return this.emitter.listenerCount(event as string);
+  }
 }
 
 
 class TypedEmitter<TEvents extends Record<string, any>> {
-  // TODO: implement internal storage
 
   private emitter = new EventEmitter();
 
@@ -67,26 +81,24 @@ class TypedEmitter<TEvents extends Record<string, any>> {
     event: K,
     listener: (payload: TEvents[K]) => void
   ): () => void {
-    // TODO: register listener, return unsubscribe function
-    throw new Error("Not implemented");
+    this.emitter.on(event as string, listener);
+    return () => this.emitter.off(event as string, listener);
   }
 
   emit<K extends keyof TEvents>(event: K, payload: TEvents[K]): boolean {
-    // TODO: call all listeners, return true if any existed
-    throw new Error("Not implemented");
+    return this.emitter.emit(event as string, payload);
   }
 
   off<K extends keyof TEvents>(
     event: K,
     listener: (payload: TEvents[K]) => void
-  ): void {
-    // TODO: remove specific listener
-    throw new Error("Not implemented");
+  ): this {
+    this.emitter.off(event as string, listener);
+    return this;
   }
 
   listenerCount<K extends keyof TEvents>(event: K): number {
-    // TODO
-    throw new Error("Not implemented");
+    return this.emitter.listenerCount(event as string);
   }
 }
 
