@@ -1,0 +1,39 @@
+{
+  "name": "eda-typescript-mastery",
+  "version": "1.0.0",
+  "description": "Event-Driven Architecture Mastery - Interview Prep",
+  "scripts": {
+    "build": "tsc",
+    "concept:emitter": "ts-node src/01-event-emitter-basics/event-emitter.ts",
+    "concept:typed-emitter": "ts-node src/02-typed-event-emitter/typed-emitter.ts",
+    "concept:pubsub": "ts-node src/03-pub-sub/pub-sub.ts",
+    "concept:event-bus": "ts-node src/04-event-bus/event-bus.ts",
+    "concept:event-sourcing": "ts-node src/05-event-sourcing/event-sourcing.ts",
+    "concept:cqrs": "ts-node src/06-cqrs/cqrs.ts",
+    "concept:saga": "ts-node src/07-saga-pattern/saga.ts",
+    "concept:observer": "ts-node src/08-observer-pattern/observer.ts",
+    "concept:mediator": "ts-node src/09-mediator-pattern/mediator.ts",
+    "concept:async-queue": "ts-node src/10-async-event-queue/async-queue.ts",
+    "concept:backpressure": "ts-node src/11-backpressure/backpressure.ts",
+    "concept:dead-letter": "ts-node src/12-dead-letter-queue/dead-letter.ts",
+    "concept:event-replay": "ts-node src/13-event-replay/event-replay.ts",
+    "concept:middleware": "ts-node src/14-middleware-pipeline/middleware.ts",
+    "concept:circuit-breaker": "ts-node src/15-circuit-breaker-events/circuit-breaker.ts",
+    "concept:debounce-throttle": "ts-node src/16-debounce-throttle/debounce-throttle.ts",
+    "concept:streams": "ts-node src/17-event-streams/event-streams.ts",
+    "concept:websocket": "ts-node src/18-websocket-events/websocket-events.ts",
+    "scenario:order": "ts-node src/scenarios/01-order-processing/solution.ts",
+    "scenario:notification": "ts-node src/scenarios/02-notification-system/solution.ts",
+    "scenario:rate-limiter": "ts-node src/scenarios/03-rate-limiter/solution.ts",
+    "scenario:workflow": "ts-node src/scenarios/04-workflow-engine/solution.ts",
+    "scenario:realtime-dashboard": "ts-node src/scenarios/05-realtime-dashboard/solution.ts",
+    "scenario:payment": "ts-node src/scenarios/06-payment-processing/solution.ts",
+    "scenario:chat": "ts-node src/scenarios/07-chat-system/solution.ts",
+    "scenario:inventory": "ts-node src/scenarios/08-inventory-management/solution.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.0",
+    "@types/node": "^20.0.0"
+  }
+}
